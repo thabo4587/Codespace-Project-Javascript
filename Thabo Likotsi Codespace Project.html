@@ -38,14 +38,21 @@ button {
     border-radius: 2px;
     margin-bottom: 2px;
     margin-top: 2px;
+    border-radius:15%;
 
-    /* Apply animation on hover */
+    
     transition: transform 0.3s ease-in-out;
+  /* The above CSS code is saying that when the specified element undergoes a change in its transform property, such as when a user hovers over it, the transition effect will take 0.3 seconds to complete with an ease-in-out timing function, resulting in a visually pleasing animation. */
 }
 
 button:hover {
-    /* Use keyframes for animation on hover */
+    /* Using keyframes for breather animation on hover and this animation is not infinite it will repeat 13 times. */
     animation: breather 1s 13 alternate;
+}
+
+  h1 {
+  text-decoration: underline;
+  color:red;
 }
 
 @keyframes breather {
@@ -67,16 +74,19 @@ button:hover {
         transform: scale(1.1);
     }
 }
+    
+/*The animation creates a dynamic visual effect, combining scale transformations, background color changes, and border-radius adjustments, resulting in a breath-like pulsating motion. This effect can be applied to an HTML element using the animation property in CSS. */      
 
      button {
         font-style:italic;
    }     
 
+    
     </style>
 </head>
 <body>
 
-<h1>Blackjack</h1>
+<h1 class = "text">Blackjack</h1>
 
 <div id="cards">Cards:</div>
 <div id="sum">Sum:</div>
@@ -91,22 +101,22 @@ button:hover {
         name: "Per",
         chips: 200
     }
-    //The above line of code initiates an object and this a reference data type in Javascript with name and chips as properties.I found it difficult to understand methods on objects at first but with more examples I grasped the concept.Objects are interstingly considered mutable data types which means they can be modified.
+    /*The above line of code initiates an object and this is a reference data type in Javascript with name and chips as properties.I found it difficult to understand methods on objects at first but with more examples I grasped the concept.Objects are interstingly considered mutable data types which means they can be modified.*/
 
     let cards = [];
     let sum = 0;
     let hasBlackJack = false;
     let isAlive = false;
     let message = "";
-  //The above lines of code initialise variables using the let keyword which will allow us to reassign these variables if we need to.Some of the data types initialized are an empty string and an empty array followed by a boolean data type and one number 0 which is a falsy data type in javascript.If we used const to create the variables then we would not have the ability to change them.
+  /*The above lines of code initialises variables using the let keyword which will allow us to reassign these variables if we need to.Some of the data types initialized are an empty string and an empty array followed by a boolean data type and one number 0 which is classified as a falsy data type in javascript.If we used const keyword to create the variables then we would not have the ability to change them.What I learned from this  was a practical understanding of how diverse data types can be effectively employed in real-world projects such as this game.*/
     let messageEl = document.getElementById("message-el");
     let sumEl = document.getElementById("sum");
     let cardsEl = document.getElementById("cards");
     let playerEl = document.getElementById("player-el");
-  //The above lines of code make use of the DOM and the getElementById() method is used to access element in our HTML and in this case the id attribute is used and the id attribute always has a unique value within the document.My struggles with this topic was understand the fact that there are several other methods that can be used to access and manipulate the elements in the DOM and I was confused as to which one is suitable for building my game.Some methods return a representation of the HTML element being referenced and some return data types such as node list and HTML lists which can be converted into arrays when needed.
+  /*The above lines of code make use of the DOM and the getElementById() method is used to access and element in our HTML document and in this case the id attribute is used and the id attribute always has a unique value within the  document.My struggles with this topic was understand the fact that there are several other selector methods that can be used to access and manipulate the elements in the DOM and I was confused as to which one is suitable for building my game.Some methods return a representation of the HTML element being referenced and some return new data types such as node lists and HTML lists which can be converted into arrays when needed these can be used in conjuction with for loops or alternatively the map() method for arrays in Javascript.*/
 
     playerEl.textContent = player.name + ": $" + player.chips;
-  //The above line of code makes use of a property of the DOM called textContent and it's purpose is to allow developers to add or reference the text contained inside HTML tags.There are two methods for achieving this and a difficulty I encountered was understanding the difference between them. What I learnt is that if you want to deal with the actual text content of an element, including hidden elements, use textContent. If you want to deal with the visible text content as it appears on the page, considering styles and visibility, use innerText.I had a higher preference for the textContent property since it gives me more information.
+  /*The above line of code makes use of a property of the DOM called textContent along with string concatenation and the dot notation to access properties of an object and the purpose of textContent is to allow developers to add or reference the text contained inside HTML tags.There are two properties that can be used to modify the text contained inside HTML tags these are call textContent and innerText and a difficulty I encountered was understanding the difference between them. What I learnt is that if you want to deal with the actual text content of an element, including hidden elements, use textContent. If you want to deal with the visible text content as it appears on the page, considering styles and visibility, use innerText.I had a higher preference for the textContent property since it gives me more information.I also learned what the difference between a method and a property is*/
 
     function getRandomCard() {
         let randomNumber = Math.floor(Math.random() * 13) + 1;
@@ -118,7 +128,7 @@ button:hover {
             return randomNumber;
         }
     }
-  //The above line of code defines a function that will allows us to randomly select a card.The first line of code makes use of the Math.floor() method which is used to strictly obtain integers and the Math.random() generates a random number between 1 and 13 where 13 is included.These are methods provided by the Javascript Math object.This code is followed by if staments which check whether the randonNumber generated is either 1 or greater than 10.If these two conditions are not met the functions return the Randmnumber  and if condition is met it returns 10 and id-f conditon 2 is met it returns the number 11 my struggles with this part was understanding the difference between if and else if statements.
+  // /*The above line of code defines a function that will allows us to randomly select a card.The first line of code makes use of the Math.floor() method which is used to strictly obtain positive integers and the Math.random() generates a random number between 1 and 13 where 13 is included.These are methods provided by the Javascript Math object available and built into Javascript.This code is followed by if statements which check whether the randonNumber generated is either 1 or greater than 10.If these two conditions are not met the functions return the Randomnumber  and if condition is met it returns 10 and if conditon 2 is met it returns the number 11 my struggles with this part was understanding the difference between if and else if statements and the fact that these rely on booleans to function.*/
 
     function startGame() {
         isAlive = true;
@@ -128,7 +138,7 @@ button:hover {
         sum = firstCard + secondCard;
         renderGame();
     }
-  //This function is reasponsible for starting the game uwhen the user clicks the start game button.This function initialises a boolean variable which checks whether a player is alive or not.The preceding lines of code initialise our first and second card numbers and these will be random numbers since the getRandomCArd function is invoked after that these two numbers are added and stored in an array and their sum is also calculated.After that the renderGame function is invoked before defined which can be done with function however the same cannot be achieved with variables.Being able to invoke function before defining them allows developer to organise their code for maximum functionality.
+  /*This function is responsible for starting the game when the user clicks the start game button.This function initialises a boolean variable which checks whether a player is alive or not.The preceding lines of code initialise our first and second card numbers and these will be random numbers since the getRandomCard function which outputs random numbers, is invoked after that these two numbers are added and stored in the variable sum and thereafter stored in an array.After that the renderGame function is invoked before defined which can be done with functions in Javascript however the same cannot be achieved with variables in Javascript.Being able to invoke functions before defining them allows developer to organise their code for maximum functionality and finidng this out confused me but I remembered that during the Scratch Bootcamp which involved games this principle was also applied.*/
 
     function renderGame() {
         cardsEl.textContent = "Cards: ";
@@ -149,7 +159,7 @@ button:hover {
         messageEl.textContent = message;
     }
 
-  //The above line of code finally defines the renderGame function adn it assumes that we have defined the variable we are using.I also made use of a for loop since it's an array I could use forEach method to loop through the array of length 2 containing the random cards and these are rendered on the screen for our player to see using the textContent property.This code is mainly responsible for the BlackJakc functionality of our game since it contained if statements which checks whether the sum of our random cards is equal to ,less that or greater than 21 and it gives the player a message and it also changes the boolean variables isAlive and hasBlackJack uses the textContent property to render the text give by the message on the screen.What I learned from the above line of code was how if statements can be used for control in programming and game development.
+  /*The above line of code finally defines the renderGame function and it assumes that we have defined the variable we are using.I also made use of a for loop since it's an array I could use forEach method to loop through the array of length 2 containing the random cards and these are rendered on the screen for our player to see using the textContent DOM property using incrementation and string concatenation.This code is mainly responsible for the BlackJack functionality of our game since it contained if statements which will check whether the sum of our random cards is equal to ,less that or greater than 21 and it gives the player a message and it also changes the boolean variables isAlive and hasBlackJack and thereafter uses the textContent property to render the text on the screen for players to interact with.What I learned from the above line of code was how if statements can be used for control in programming and game development and the importance of organising them in the correct sequence.*/
     function newCard() {
         if (isAlive && !hasBlackJack) {
             let card = getRandomCard();
@@ -159,7 +169,7 @@ button:hover {
         }
     }
   
-  //This function will determine whether the user can draw a new card and the if staments controls the conditions under which a new card can be drawn.It checks whether the player is still alive and if they have blackjack and if they do it generates a random card and adds it to the sum and adds it to the array containing the two cards.Lastly the renderGame() function which was defined above is invoked. 
+  /*This function will determine whether the user can draw a new card and the if staments controls the conditions under which a new card can be drawn.It checks whether the player is still alive and if they do not have blackjack using !, which is a negating property and if these conditions are both true the function generates a random card and adds it to the sum and appends it to the array containing the two cards using the push() method.Lastly the renderGame() function which was defined above is invoked allowing the game to loop in an infinite manner so the player keeps playing. */
 
 </script>
 
